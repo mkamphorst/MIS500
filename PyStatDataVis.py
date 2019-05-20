@@ -46,20 +46,21 @@ df.groupby(['state','gender'])['name'].size().unstack().plot(kind='bar',stacked=
 df.sample(n=3)
 plt.show()
 
-#Generate a Plot with count of people by gender, spliting by state:
+#5 Generate a Plot with count of people by gender, spliting by state:
 df.groupby(['gender','state'])['age'].size().unstack().plot(kind='bar',stacked=True)
 plt.show()
 
 #6 Generate a violinplot
-#item # 6 in code from website says fig.ax but that didn't
-#run as violinplot was undefined so changed to sns.ax
-sns.ax = plt.subplots()
+fig, ax = plt.subplots()
 ax.violinplot(df["age"],vert=False)
 plt.show()
 
 #7 Generate a Plot of the distribution of faculty children
 num_bins=10
-plt.hist(df['num_children'],num_bins,normed=1, facecolor='blue',alpha=0.5)
+#replace normed with density because density is deprecated
+#plt.hist(df['num_children'],num_bins,normed=1, facecolor='blue',alpha=0.5)
+plt.hist(df['num_children'],num_bins,density=1, facecolor='blue',alpha=0.5)
+
 plt.show()
 
 #8 Use Seaborn Libary to construct a pet plot
